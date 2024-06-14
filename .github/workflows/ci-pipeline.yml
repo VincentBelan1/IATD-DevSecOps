@@ -74,7 +74,7 @@ jobs:
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
   submit_results:
-   needs: [build]
+   needs: [build, dast]
    if: true
    runs-on: ubuntu-latest
    steps:
@@ -111,7 +111,7 @@ jobs:
        ZAP_RESPONSE=$(curl -X POST -H "Authorization: Bearer $AZURE_ACCESS_TOKEN"  --data-binary @$GITHUB_WORKSPACE/report_json.json https://devsecops-ver.azurewebsites.net/api/week3-zap-report)
        echo "Zap upload: $ZAP_RESPONSE"
   dast:
-    needs: [test, sonarqube]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
