@@ -52,7 +52,7 @@ jobs:
        name: sonarqube-report
        path: sonarqube-report.json
   build:
-      needs: test
+      needs: [test, sonarqube]
       runs-on: ubuntu-latest
       steps:
         -
