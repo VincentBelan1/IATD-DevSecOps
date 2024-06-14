@@ -52,7 +52,7 @@ jobs:
        name: sonarqube-report
        path: sonarqube-report.json
   build:
-      needs: [test, sonarqube]
+      needs: [test, sonarqube, dast]
       runs-on: ubuntu-latest
       steps:
         -
@@ -74,7 +74,7 @@ jobs:
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
   submit_results:
-   needs: [build, dast]
+   needs: [build]
    if: true
    runs-on: ubuntu-latest
    steps:
