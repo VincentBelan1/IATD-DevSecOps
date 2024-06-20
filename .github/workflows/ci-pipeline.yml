@@ -52,7 +52,7 @@ jobs:
        name: sonarqube-report
        path: sonarqube-report.json
   build:
-      needs: [test, sonarqube, dast, security_gate]
+      needs: [test, sonarqube, dast, security_gate, image-scan]
       runs-on: ubuntu-latest
       steps:
         -
